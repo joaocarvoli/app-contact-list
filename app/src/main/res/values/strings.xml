@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ContactList</string>
+    <string name="name">Insert your name</string>
+    <string name="contact_name">Name</string>
+    <string name="name_title">Name</string>
+    <string name="tv_address">Address</string>
+    <string name="et_address">Insert your address</string>
+</resources>
