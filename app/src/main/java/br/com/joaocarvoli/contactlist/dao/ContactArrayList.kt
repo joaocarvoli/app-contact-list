@@ -30,7 +30,6 @@ class ContactArrayList : ContactDAO {
     }
 
     override fun getAll(): ArrayList<Contact> {
-        return arrayListOf()
+        return contactList
     }
-
 }
