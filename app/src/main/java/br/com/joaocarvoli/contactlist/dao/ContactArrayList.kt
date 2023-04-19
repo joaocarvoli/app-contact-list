@@ -1,8 +1,9 @@
 package br.com.joaocarvoli.contactlist.dao
 
+import android.util.Log
 import br.com.joaocarvoli.contactlist.model.Contact
 
-class ContactArrayList : ContactDAO {
+object ContactArrayList : ContactDAO {
 
     private var contactList : ArrayList<Contact> = ArrayList<Contact>()
 
@@ -25,8 +26,16 @@ class ContactArrayList : ContactDAO {
         return false
     }
 
-    override fun get(id: Number): Contact {
-        return Contact(1,"", 1, "")
+    override fun get(id: Number): Contact? {
+        var contact : Contact? = null
+
+        contactList.forEach { contactInList ->
+            if(contactInList.getId() == id){
+                contact = contactInList
+            }
+        }
+
+        return contact
     }
 
     override fun getAll(): ArrayList<Contact> {

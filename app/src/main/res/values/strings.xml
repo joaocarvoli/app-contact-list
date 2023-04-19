@@ -6,4 +6,6 @@
     <string name="tv_address">Address</string>
     <string name="et_address">Insert your address</string>
     <string name="btn_add_contact">Add Contact</string>
+    <string name="detail_number">Number</string>
+    <string name="detail_address">Address</string>
 </resources>

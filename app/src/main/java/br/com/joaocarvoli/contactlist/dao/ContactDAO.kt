@@ -6,6 +6,6 @@ interface ContactDAO {
     fun add(contact: Contact) : Boolean
     fun remove(id : Number) : Boolean
     fun removeAll() : Boolean
-    fun get(id : Number) : Contact
+    fun get(id : Number) : Contact?
     fun getAll() : ArrayList<Contact>
 }
