@@ -9,15 +9,18 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import br.com.joaocarvoli.contactlist.dao.ContactArrayList
 import br.com.joaocarvoli.contactlist.dao.ContactDAO
 import br.com.joaocarvoli.contactlist.model.Contact
+import br.com.joaocarvoli.contactlist.ui.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var contactDAO : ContactDAO
     private lateinit var arrayAdapter: ArrayAdapter<Contact>
     private var idCounter = 0;
+    private lateinit var viewModel : MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         contactDAO = ContactArrayList
         arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, contactDAO.getAll())
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         val lvContactList : ListView = findViewById(R.id.lv_contacts_list)
         lvContactList.adapter = arrayAdapter
@@ -37,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         val etNumber : TextView = findViewById(R.id.et_number)
         val etAddress : TextView = findViewById(R.id.et_address)
         val btnAddContact : Button = findViewById(R.id.btn_add)
+
         btnAddContact.setOnClickListener {
-            val contact = Contact(idCounter++, etName.text.toString(), etNumber.text.toString(), etAddress.text.toString())
-            contactDAO.add(contact)
+            viewModel.addContact(etName, etNumber, etAddress)
             arrayAdapter.notifyDataSetChanged()
         }
     }
